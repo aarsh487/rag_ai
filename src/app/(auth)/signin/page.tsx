@@ -70,7 +70,7 @@ export default function Page() {
                   size="lg"
                   type="submit"
                 >
-                  signin
+                  sign in
                 </Button>
               </div>
             </form>

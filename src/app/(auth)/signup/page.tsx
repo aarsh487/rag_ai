@@ -56,7 +56,7 @@ export default function Page() {
                 <Input onChange={(e) => setForm({...form, password: e.target.value})} placeholder="Password" />
               </div>
               <div className="mt-4">
-                <Button className="hover:border hover:border-primary" size="lg" type="submit">signup</Button>
+                <Button className="hover:border hover:border-primary" size="lg" type="submit">sign up</Button>
               </div>
             </form>
           </div>
