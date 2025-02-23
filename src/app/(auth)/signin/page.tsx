@@ -30,7 +30,7 @@ export default function Page() {
         return;
       }
       if (response?.url) {
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
