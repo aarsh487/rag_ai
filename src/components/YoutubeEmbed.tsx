@@ -1,9 +1,9 @@
 import React from "react";
 
 export const YoutubeEmbed = ({ embedId }: { embedId: string }) => (
-  <div className="relative">
+  <div className="">
     <iframe
-    className="absolute inset-8 aspect-video"
+    className="aspect-video"
       width=""
       height=""
       src={`https://www.youtube.com/embed/${embedId}`}

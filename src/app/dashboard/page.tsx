@@ -7,6 +7,9 @@ import { Card } from "@/components/Card";
 function page() {
   const notes = [
     { title: "one", content: "one tow three"},
+    { title: "two", content: "one tow three"},
+    { title: "three", content: "one tow three"},
+    { title: "four", content: "one tow three"},
   ];
 
   return (
@@ -16,9 +19,11 @@ function page() {
           <Sidebar />
         </div>
         {notes.length > 0 ? (
-          <div className="col-span-3">
+          <div className="col-span-5 p-8 grid grid-flow-col gap-8">
             {notes.map((note) => (
-                <Card title={note.title} content={note.content} />
+              <div className="">
+                <Card key={note.title} title={note.title} content={note.content} />
+              </div>
             ))}
           </div>
         ) : (
