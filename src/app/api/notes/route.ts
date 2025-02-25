@@ -8,15 +8,15 @@ import { storeText } from "@/utils/vectordb";
 export async function POST(req: NextRequest) {
   try {
     const { data, error } = noteSchema.safeParse(await req.json());
-    // const session = await getServerSession(authOptions);
-    // if (!session) {
-    //   return NextResponse.json(
-    //     { success: false, message: "Authentication error" },
-    //     { status: 404 }
-    //   );
-    // }
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json(
+        { success: false, message: "Authentication error" },
+        { status: 404 }
+      );
+    }
 
-    // const userId = session.user.id;
+    const userId = session.user.id;
 
     if (error) {
       return NextResponse.json(
@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
         data: {
           title: data.title,
           note: data.note,
+          userId
         },
       });
       if(data.note){

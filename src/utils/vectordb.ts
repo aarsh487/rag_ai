@@ -54,7 +54,7 @@ export const retrieveSimilarTexts = async (query: string) => {
 };
 
 const llm = new ChatGoogleGenerativeAI({
-  modelName: "gemini-pro",
+  modelName: "gemini-1.5-pro",
   apiKey: GOOGLE_API_KEY,
 });
 

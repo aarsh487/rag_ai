@@ -5,6 +5,7 @@ import React from "react";
 import { IoDocumentOutline, IoHomeOutline } from "react-icons/io5";
 import appLogo1 from "/public/images/appLogo1.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export const Sidebar = () => {
   const { data, status } = useSession();
@@ -29,8 +30,10 @@ export const Sidebar = () => {
               key={tag.name}
               className="flex gap-4 hover:bg-neutral-800 rounded-lg items-center px-2 py-1 text-lg mt-4"
             >
+              <Link href={('/chat')}>
               <div>{tag.icon}</div>
               <div>{tag.name}</div>
+              </Link>
             </div>
           ))}
         </div>

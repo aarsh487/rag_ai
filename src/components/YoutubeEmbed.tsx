@@ -1,9 +1,9 @@
 import React from "react";
 
 export const YoutubeEmbed = ({ embedId }: { embedId: string }) => (
-  <div className="">
+
     <iframe
-    className="aspect-video"
+    className="aspect-video max-w-64"
       width=""
       height=""
       src={`https://www.youtube.com/embed/${embedId}`}
@@ -12,6 +12,5 @@ export const YoutubeEmbed = ({ embedId }: { embedId: string }) => (
       allowFullScreen
       title="Embedded youtube"
     />
-  </div>
 );
 
