@@ -32,6 +32,8 @@ function Page() {
     }
   };
 
+ 
+
   useEffect(() => {
     getNotes();
   },[])
