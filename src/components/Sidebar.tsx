@@ -11,9 +11,9 @@ export const Sidebar = () => {
   const { data, status } = useSession();
 
   const tags = [
-    { name: "Home", icon: <IoHomeOutline /> },
-    { name: "Links", icon: <IoDocumentOutline /> },
-    { name: "Ask Ai", icon: <IoHomeOutline /> },
+    { name: "Home", icon: <IoHomeOutline />, href: "dashboard" },
+    { name: "Links", icon: <IoDocumentOutline />, href: "dashboard" },
+    { name: "Ask Ai", icon: <IoHomeOutline />, href: "chat" },
   ];
 
   console.log(data?.user);
@@ -26,15 +26,17 @@ export const Sidebar = () => {
         </div>
         <div>
           {tags.map((tag) => (
+            <Link href={`${tag.href}`}>
             <div
               key={tag.name}
               className="flex gap-4 hover:bg-neutral-800 rounded-lg items-center px-2 py-1 text-lg mt-4"
             >
-              <Link href={('/chat')}>
-              <div>{tag.icon}</div>
-              <div>{tag.name}</div>
-              </Link>
+              
+                <div>{tag.icon}</div>
+                <div>{tag.name}</div>
+              
             </div>
+            </Link>
           ))}
         </div>
       </div>

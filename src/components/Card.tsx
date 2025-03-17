@@ -1,5 +1,6 @@
 import React from "react";
 import { YoutubeEmbed } from "./YoutubeEmbed";
+import { Trash, Edit, Star } from "lucide-react";
 
 export const Card = ({
   title,
@@ -9,20 +10,32 @@ export const Card = ({
   content: string;
 }) => {
   return (
-    <div className="relative max-w-[350px] h-80 bg-neutral-900 border rounded-xl overflow-hidden">
-      {/* <div className="absolute top-0 left-0 bg-red-500 opacity-10 blur-xl rounded-full"></div> */}
-
+    <div className="relative max-w-[350px] h-80 border border-neutral-800 rounded-xl overflow-hidden shadow-md transition-all hover:shadow-lg">
       {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 via-neutral-900 to-neutral-900 rounded-xl">
-        <div className="font-semibold text-xl pl-8 mt-8">
-          <h1>{title}</h1>
+      <div className="bg-transparent">
+        <div className="flex justify-between items-center mb-3">
+          <h1 className="font-semibold text-lg flex items-center gap-2">
+            📝 {title}
+          </h1>
+          <div className="flex gap-2">
+            <Edit size={18} className="cursor-pointer hover:text-blue-400" />
+            <Trash size={18} className="cursor-pointer hover:text-red-400" />
+            <Star size={18} className="cursor-pointer hover:text-yellow-400" />
+          </div>
         </div>
-        <div className="aspect-video overflow-hidden px-2">
+
+        {/* YouTube Embed */}
+        <div className="px-2">
           <YoutubeEmbed embedId="Zk6YBljdyOw" />
         </div>
-        <div className="font-semibold text-sm pt-4 pl-4">
-          <h1>lorem*20</h1>
+
+        {/* Content */}
+        <div className="font-medium text-sm text-neutral-300 pt-4">
+          <p>{content}</p>
         </div>
+
+        {/* Timestamp */}
+        <p className="text-xs text-neutral-500 mt-2">Last edited: 2 hours ago</p>
       </div>
     </div>
   );

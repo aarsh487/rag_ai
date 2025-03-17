@@ -5,10 +5,8 @@ import {
 } from "@langchain/google-genai";
 import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "@langchain/pinecone";
-import { Document } from "langchain/document";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { metadata } from "@/app/layout";
 
 const embeddings = new GoogleGenerativeAIEmbeddings({
   model: "text-embedding-004",
@@ -49,7 +47,7 @@ export const retrieveSimilarTexts = async (query: string) => {
   });
 
   const results = await vectorstore.similaritySearch(query, 5);
-  console.log(results.map((doc) => doc.pageContent));
+  console.log("context", results.map((doc) => doc.pageContent));
   return results.map((doc) => doc.pageContent);
 };
 
@@ -69,6 +67,5 @@ export const generateResponse = async (query: string) => {
     new HumanMessage(`Context: ${context}\n\nQuestion: ${query}`),
   ]);
 
-  console.log("response:", response.content);
   return response;
 };
