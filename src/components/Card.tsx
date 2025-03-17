@@ -7,7 +7,7 @@ export const Card = ({
   content,
 }: {
   title: string;
-  content: string;
+  content?: string | null;
 }) => {
   return (
     <div className="relative max-w-[350px] h-80 border border-neutral-800 rounded-xl overflow-hidden shadow-md transition-all hover:shadow-lg">

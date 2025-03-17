@@ -20,22 +20,17 @@ export const Sidebar = () => {
   return (
     <>
       <div className="">
-        <div className="flex items-center text-2xl font-semibold tracking-wider">
+        <div className="flex items-center text-2xl">
           <Image src={appLogo1} alt="logo" width={50} height={50} />
-          <span className="pb-2">Brainly</span>
+          {/* <span className="tracking-widest">Brainly</span> */}
         </div>
         <div>
           {tags.map((tag) => (
-            <Link href={`${tag.href}`}>
-            <div
-              key={tag.name}
-              className="flex gap-4 hover:bg-neutral-800 rounded-lg items-center px-2 py-1 text-lg mt-4"
-            >
-              
+            <Link key={tag.name} href={`${tag.href}`}>
+              <div className="flex gap-4 hover:bg-neutral-800 rounded-lg items-center px-2 py-1 text-lg mt-4">
                 <div>{tag.icon}</div>
                 <div>{tag.name}</div>
-              
-            </div>
+              </div>
             </Link>
           ))}
         </div>
