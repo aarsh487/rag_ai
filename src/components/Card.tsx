@@ -1,15 +1,18 @@
 import React from "react";
 import { YoutubeEmbed } from "./YoutubeEmbed";
 import { Trash, Edit, Star } from "lucide-react";
+import { notesType } from "@/app/dashboard/page";
+
+
 
 export const Card = ({
-  title,
-  content,
-  url
+ note,
+  url,
+  deleteNote
 }: {
-  title: string;
-  content?: string | null;
-  url?: string | null
+note: notesType
+  url?: string | null,
+  deleteNote: (id: string) => void;
 }) => {
 
   function extractYouTubeID(url: string) {
@@ -26,11 +29,11 @@ export const Card = ({
       <div className="bg-transparent">
         <div className="flex justify-between items-center mb-3">
           <h1 className="font-semibold text-lg flex items-center gap-2">
-            📝 {title}
+            📝 {note.title}
           </h1>
           <div className="flex gap-2">
             <Edit size={18} className="cursor-pointer hover:text-blue-400" />
-            <Trash size={18} className="cursor-pointer hover:text-red-400" />
+            <Trash size={18} className="cursor-pointer hover:text-red-400" onClick={() => deleteNote(note.id)} />
             <Star size={18} className="cursor-pointer hover:text-yellow-400" />
           </div>
         </div>
@@ -42,7 +45,7 @@ export const Card = ({
 
         {/* Content */}
         <div className="font-medium text-sm text-neutral-300 pt-4">
-          <p>{content}</p>
+          <p>{note.note}</p>
         </div>
 
         {/* Timestamp */}
