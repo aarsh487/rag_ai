@@ -79,6 +79,7 @@ function Page() {
     try {
       const response = await axiosInstance.get("/notes");
       setNotes(response.data.notes);
+      console.log("notes", response.data.notes)
     } catch (error) {
       console.error("Error fetching notes:", error);
     }
@@ -86,13 +87,13 @@ function Page() {
 
   const deleteNote = async (id: string) => {
     try {
-      const respose = await axiosInstance.delete(`/notes/${id}`);
-      const newNotes = notes.filter((note) => note.id !== id);
-      setNotes(newNotes);
+      const response = await axiosInstance.delete(`/notes/${id}`);
+      setNotes((prev) => prev.filter((note) => note.id !== id));
     } catch (error) {
-      console.log("error in deleting", error);
+      console.error("Error in deleting:", error);
     }
   };
+  
 
   const onClose = () => {
     setModalOpen(false);

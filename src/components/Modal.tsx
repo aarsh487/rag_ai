@@ -31,27 +31,6 @@ export const Modal = ({
   loading,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
-
-  // Close on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
-
-  // Close on outside click
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        onClose();
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [onClose]);
-
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div
@@ -82,9 +61,9 @@ export const Modal = ({
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,
-                noteType: e.target.value as NoteEnums, // Ensure type safety
-                note: "", // Reset the input when switching types
-                link: "", // Reset link when switching
+                noteType: e.target.value as NoteEnums, 
+                note: "", 
+                link: "", 
               }))
             }
             className="bg-neutral-800 border border-neutral-700 text-white rounded-lg px-4 py-2"
@@ -111,7 +90,7 @@ export const Modal = ({
             />
           ) : (
             <Input
-              value={formData.link ?? ""}
+              value={formData.link}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, link: e.target.value }))
               }
@@ -138,12 +117,20 @@ export const Modal = ({
                 onSubmit();
               }}
               className={`w-1/2 text-lg rounded-lg transition-all ${
-                loading || !formData.title.trim() || !formData.note?.trim()
+                loading ||
+                !formData.title.trim() ||
+                (formData.noteType === NoteEnums.DOCUMENT
+                  ? !formData.note?.trim()
+                  : !formData.link?.trim())
                   ? "bg-gray-600 cursor-not-allowed"
                   : "bg-red-500 hover:bg-red-600"
               }`}
               disabled={
-                loading || !formData.title.trim() || !formData.note?.trim()
+                loading ||
+                !formData.title.trim() ||
+                (formData.noteType === NoteEnums.DOCUMENT
+                  ? !formData.note?.trim()
+                  : !formData.link?.trim())
               }
             >
               {loading ? "Saving..." : "Submit"}

@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
         data: {
           title: data.title,
           note: data.note,
+          link: data.link,
           userId
         },
       });
